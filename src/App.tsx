@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import Home from './components/home';
+import DefaultHeader from './components/containers/default/DefaultHeader';
+import DefaultLayout from './components/containers/default/DefaultLayout';
+import { Route, Routes } from 'react-router-dom';
 
 const App = () => {
   useEffect(() => {
@@ -13,7 +16,21 @@ const App = () => {
   }, []);
   
   return (
-    <h1>Hello React</h1>
+    <>
+    <Routes>
+        <Route path="/" element={<DefaultLayout />}>
+          <Route index element={<Home />} />
+          {/* <Route path="about" element={<About />} />
+          <Route path="dashboard" element={<Dashboard />} /> */}
+
+          {/* Using path="*"" means "match anything", so this route
+                acts like a catch-all for URLs that we don't have explicit
+                routes for. */}
+          {/* <Route path="*" element={<NoMatch />} /> */}
+        </Route>
+      </Routes>
+    </>
+
   );
 }
 
